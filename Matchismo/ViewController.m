@@ -25,6 +25,20 @@
 @property (weak, nonatomic) IBOutlet UIButton *button2;
 @property (weak, nonatomic) IBOutlet UIButton *button3;
 @property (weak, nonatomic) IBOutlet UIButton *button4;
+@property (weak, nonatomic) IBOutlet UIButton *button5;
+@property (weak, nonatomic) IBOutlet UIButton *button6;
+@property (weak, nonatomic) IBOutlet UIButton *button7;
+@property (weak, nonatomic) IBOutlet UIButton *button8;
+
+@property (weak, nonatomic) IBOutlet UIButton *button9;
+@property (weak, nonatomic) IBOutlet UIButton *button10;
+@property (weak, nonatomic) IBOutlet UIButton *button11;
+@property (weak, nonatomic) IBOutlet UIButton *button12;
+@property (weak, nonatomic) IBOutlet UIButton *button13;
+@property (weak, nonatomic) IBOutlet UIButton *button14;
+@property (weak, nonatomic) IBOutlet UIButton *button15;
+@property (weak, nonatomic) IBOutlet UIButton *button16;
+
 
 
 @end
@@ -77,6 +91,21 @@
     self.button2.selected=NO;
     self.button3.selected=NO;
     self.button4.selected=NO;
+    
+    self.button5.selected=NO;
+    self.button6.selected=NO;
+    self.button7.selected=NO;
+    self.button8.selected=NO;
+    
+    self.button9.selected=NO;
+    self.button10.selected=NO;
+    self.button11.selected=NO;
+    self.button12.selected=NO;
+    
+    self.button13.selected=NO;
+    self.button14.selected=NO;
+    self.button15.selected=NO;
+    self.button16.selected=NO;
 
     _myDeck = [[PlayingCardDeck alloc] init];
     _flipsCount = 0;

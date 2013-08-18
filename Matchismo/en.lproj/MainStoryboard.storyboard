@@ -283,9 +283,21 @@
                     </view>
                     <connections>
                         <outlet property="button1" destination="kL1-Rq-EM6" id="JIj-vx-fKE"/>
+                        <outlet property="button10" destination="P3f-61-1pf" id="JBq-Re-pLV"/>
+                        <outlet property="button11" destination="fV4-fI-ffV" id="Oih-6y-Rep"/>
+                        <outlet property="button12" destination="Bav-uV-oHR" id="DMm-MY-C9f"/>
+                        <outlet property="button13" destination="Yai-ig-FIU" id="k8g-e4-ndy"/>
+                        <outlet property="button14" destination="GR4-MH-Hta" id="Xd1-fG-tQ5"/>
+                        <outlet property="button15" destination="f6U-xz-Jgq" id="l8r-W7-Czs"/>
+                        <outlet property="button16" destination="tiJ-KC-xgl" id="6qR-Hu-yzP"/>
                         <outlet property="button2" destination="TdV-bl-Xn7" id="rih-Wa-g8i"/>
                         <outlet property="button3" destination="uEI-33-yN9" id="FHW-BB-8hA"/>
                         <outlet property="button4" destination="ln0-j8-fFR" id="3T0-1k-kxF"/>
+                        <outlet property="button5" destination="Kat-Rv-d0F" id="bWQ-Rk-e87"/>
+                        <outlet property="button6" destination="kId-kW-JnZ" id="V88-Td-SqA"/>
+                        <outlet property="button7" destination="Jpa-bY-Euj" id="jJc-zg-qRp"/>
+                        <outlet property="button8" destination="cpg-Yf-an1" id="7DY-kZ-aZu"/>
+                        <outlet property="button9" destination="DvV-zV-XAx" id="eE3-d6-VT2"/>
                         <outlet property="flipLabel" destination="nkp-3s-jRa" id="fz3-PS-hPS"/>
                         <outlet property="matchLabel" destination="4od-7X-Faa" id="eNd-Dz-rhk"/>
                     </connections>
@@ -302,8 +314,21 @@
                 <relationship kind="action" name="flipCard:" candidateClass="UIButton"/>
                 <relationship kind="action" name="reset:"/>
                 <relationship kind="outlet" name="button1" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="button10" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="button11" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="button12" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="button13" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="button14" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="button15" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="button16" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="button2" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="button3" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="button4" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="button5" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="button6" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="button7" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="button8" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="button9" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="flipLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="matchLabel" candidateClass="UILabel"/>
             </relationships>
