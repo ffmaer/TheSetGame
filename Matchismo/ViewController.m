@@ -17,6 +17,7 @@
 
 @property (strong, nonatomic) PlayingCard *card1;
 @property (strong, nonatomic) PlayingCard *card2;
+@property (strong, nonatomic) PlayingCard *card3;
 
 @property (weak, nonatomic) IBOutlet UILabel *matchLabel;
 
@@ -38,6 +39,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *button14;
 @property (weak, nonatomic) IBOutlet UIButton *button15;
 @property (weak, nonatomic) IBOutlet UIButton *button16;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *mode;
 
 
 
@@ -60,6 +62,8 @@
 
 - (IBAction)flipCard:(UIButton *)sender {
     
+    self.mode.enabled = NO;
+    
     if(sender.isSelected){
         sender.selected = NO;
     }
@@ -70,23 +74,47 @@
         sender.selected = YES;
         //  How to compare two cards is independent from the UI, so it should be written in Model. But how to tell users about the matching result is dependent of the UI, so it should be written in Controller.
         self.card1 = self.card2;
-        self.card2 = myCard;
+        self.card2 = self.card3;
+        self.card3 = myCard;
+        
+        if(self.mode.selectedSegmentIndex == 0){
+        
+            if(self.card2){
 
-        if(self.card1){
-
-            if([self.card1 isEqual:self.card2]){
-                self.matchLabel.text = [NSString stringWithFormat:@"Matched %@ & %@ for 4 points", self.card1.contents, self.card2.contents];
-            }else{
-                self.matchLabel.text = [NSString stringWithFormat:@"%@ and %@ don't match! 2 point penalty!", self.card1.contents, self.card2.contents];
+                if([self.card2 isEqual2Card:self.card3]){
+                    self.matchLabel.text = [NSString stringWithFormat:@"Matched %@ & %@ for 4 points", self.card2.contents, self.card3.contents];
+                }else{
+                    self.matchLabel.text = [NSString stringWithFormat:@"%@ and %@ don't match! 2 point penalty!", self.card2.contents, self.card3.contents];
+                }
             }
-        }
-        else{
-            self.matchLabel.text = [NSString stringWithFormat:@"Flipped up %@",myCard.contents];
+            else{
+                self.matchLabel.text = [NSString stringWithFormat:@"Flipped up %@",myCard.contents];
+            }
+        }else if(self.mode.selectedSegmentIndex ==1){
+            if(self.card2){
+                if(self.card1){
+                
+                    if([self.card1 isEqual3Card:self.card2 card2:self.card3]){
+                        self.matchLabel.text = [NSString stringWithFormat:@"Matched %@ & %@ & %@ for 4 points", self.card1.contents, self.card2.contents, self.card3.contents];
+                    }else{
+                        self.matchLabel.text = [NSString stringWithFormat:@"%@, %@ and %@ don't match! 2 point penalty!", self.card1.contents, self.card2.contents, self.card3.contents];
+                    }
+                }
+                else{
+                    self.matchLabel.text = [NSString stringWithFormat:@"Flipped up %@ and %@",self.card2.contents,self.card3.contents];
+                }
+            }else{
+                self.matchLabel.text = [NSString stringWithFormat:@"Flipped up %@",self.card2.contents];
+            }
+            
         }
     }
 }
 
 - (IBAction)reset:(id)sender {
+    
+    self.mode.enabled = YES;
+    
     self.button1.selected=NO;
     self.button2.selected=NO;
     self.button3.selected=NO;
