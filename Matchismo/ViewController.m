@@ -41,11 +41,19 @@
 @property (weak, nonatomic) IBOutlet UIButton *button16;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *mode;
 
+@property (strong, nonatomic)NSMutableArray *history;
 
+
+@property (weak, nonatomic) IBOutlet UISlider *historySlider;
 
 @end
 
 @implementation ViewController
+
+-(NSMutableArray *)history{
+    if(!_history) _history = [[NSMutableArray alloc] init];
+    return _history;
+}
 
 
 -(PlayingCardDeck *) myDeck
@@ -62,56 +70,94 @@
 
 - (IBAction)flipCard:(UIButton *)sender {
     
+    
+    self.matchLabel.alpha=1;
+
+    self.historySlider.enabled = YES;
+
+    UIImage *cardBackImage = [UIImage imageNamed:@"cardback.jpg"];
+    [sender setBackgroundImage:cardBackImage forState:UIControlStateNormal];
+    UIImage *cardFrontImage = [UIImage imageNamed:@"cardfront.png"];
+    [sender setBackgroundImage:cardFrontImage forState:UIControlStateSelected];
+    
     self.mode.enabled = NO;
     
     if(sender.isSelected){
         sender.selected = NO;
     }
     else{
+        sender.selected = YES;
+
         self.flipsCount++;
         PlayingCard *myCard = self.myDeck.drawRandomCard;
         [sender setTitle: myCard.contents forState:UIControlStateSelected];
-        sender.selected = YES;
         //  How to compare two cards is independent from the UI, so it should be written in Model. But how to tell users about the matching result is dependent of the UI, so it should be written in Controller.
         self.card1 = self.card2;
         self.card2 = self.card3;
         self.card3 = myCard;
+        
+        
+        NSString *message=@"";
         
         if(self.mode.selectedSegmentIndex == 0){
         
             if(self.card2){
 
                 if([self.card2 isEqual2Card:self.card3]){
-                    self.matchLabel.text = [NSString stringWithFormat:@"Matched %@ & %@ for 4 points", self.card2.contents, self.card3.contents];
+                    message = [NSString stringWithFormat:@"Matched %@ & %@ for 4 points", self.card2.contents, self.card3.contents];
+                    self.matchLabel.text = message;
                 }else{
-                    self.matchLabel.text = [NSString stringWithFormat:@"%@ and %@ don't match! 2 point penalty!", self.card2.contents, self.card3.contents];
+                    message=[NSString stringWithFormat:@"%@ and %@ don't match! 2 point penalty!", self.card2.contents, self.card3.contents];
+                    self.matchLabel.text = message;
                 }
             }
             else{
-                self.matchLabel.text = [NSString stringWithFormat:@"Flipped up %@",myCard.contents];
+                message = [NSString stringWithFormat:@"Flipped up %@",myCard.contents];
+                self.matchLabel.text = message;
             }
         }else if(self.mode.selectedSegmentIndex ==1){
             if(self.card2){
                 if(self.card1){
                 
                     if([self.card1 isEqual3Card:self.card2 card2:self.card3]){
-                        self.matchLabel.text = [NSString stringWithFormat:@"Matched %@ & %@ & %@ for 4 points", self.card1.contents, self.card2.contents, self.card3.contents];
+                        message = [NSString stringWithFormat:@"Matched %@ & %@ & %@ for 4 points", self.card1.contents, self.card2.contents, self.card3.contents];
+                        self.matchLabel.text = message;
                     }else{
-                        self.matchLabel.text = [NSString stringWithFormat:@"%@, %@ and %@ don't match! 2 point penalty!", self.card1.contents, self.card2.contents, self.card3.contents];
+                        message=[NSString stringWithFormat:@"%@, %@ and %@ don't match! 2 point penalty!", self.card1.contents, self.card2.contents, self.card3.contents];
+                        self.matchLabel.text = message;
                     }
                 }
                 else{
-                    self.matchLabel.text = [NSString stringWithFormat:@"Flipped up %@ and %@",self.card2.contents,self.card3.contents];
+                    message=[NSString stringWithFormat:@"Flipped up %@ and %@",self.card2.contents,self.card3.contents];
+                    self.matchLabel.text = message;
                 }
             }else{
-                self.matchLabel.text = [NSString stringWithFormat:@"Flipped up %@",self.card2.contents];
+                message=[NSString stringWithFormat:@"Flipped up %@",self.card3.contents];
+                self.matchLabel.text = message;
             }
             
         }
+        [self.history addObject:message];
+        
+        self.historySlider.minimumValue=0;
+        self.historySlider.maximumValue=self.history.count-1;
+        
     }
 }
 
 - (IBAction)reset:(id)sender {
+    
+    
+    self.history = nil;
+    self.historySlider.minimumValue=0;
+    self.historySlider.maximumValue=0;
+    self.historySlider.enabled = NO;
+    self.card1 = nil;
+    self.card2 = nil;
+    self.card3 = nil;
+    
+    self.matchLabel.text = @"";
+    
     
     self.mode.enabled = YES;
     
@@ -134,9 +180,17 @@
     self.button14.selected=NO;
     self.button15.selected=NO;
     self.button16.selected=NO;
-
+    
     _myDeck = [[PlayingCardDeck alloc] init];
     _flipsCount = 0;
     self.flipLabel.text = [NSString stringWithFormat:@"Flips: %d",self.flipsCount];
 }
+- (IBAction)slide:(UISlider *)sender {
+    
+    NSString *message = self.history[(int)sender.value];
+    self.matchLabel.text = message;
+    self.matchLabel.alpha = 0.5;
+}
+
+
 @end
