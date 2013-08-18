@@ -14,5 +14,6 @@
 -(NSString *)contents;
 +(NSArray *)validSuits;
 +(NSInteger)maxRank;
--(BOOL)isEqual:(PlayingCard *)card;
+-(BOOL)isEqual2Card:(PlayingCard *)card;
+-(BOOL)isEqual3Card:(PlayingCard *)card card2:(PlayingCard *)card2;
 @end

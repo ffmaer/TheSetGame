@@ -49,9 +49,12 @@
     }
 }
 
--(BOOL)isEqual: (PlayingCard *)card{
+-(BOOL)isEqual2Card: (PlayingCard *)card{
     return ([self.suit isEqualToString:card.suit] || self.rank == card.rank);
-
+}
+-(BOOL)isEqual3Card:(PlayingCard *)card1 card2:(PlayingCard *)card2
+{
+    return (([self.suit isEqualToString:card1.suit ]&& [self.suit isEqualToString:card2.suit] )|| (self.rank == card1.rank && self.rank == card2.rank));
 }
 
 @end
