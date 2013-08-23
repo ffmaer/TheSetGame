@@ -8,37 +8,13 @@
 
 #import "TheMatchingGame.h"
 #import "PlayingCard.h"
-@interface TheMatchingGame()
+
+@interface TheGame()
 @property (strong,nonatomic) NSMutableArray *cards;//of Card
-@property (readwrite,nonatomic) NSInteger score;
+@property (readwrite, nonatomic) NSInteger score;
 @end
 
-
 @implementation TheMatchingGame
-
-
--(NSMutableArray *)cards{
-    if(!_cards) _cards = [[NSMutableArray alloc]init];
-    return _cards;
-}
-
--(Card *)cardAtIndex:(NSUInteger)index{
-    return self.cards[index];
-}
-
--(id)initWithCardCount: (NSUInteger) count usingDeck:(Deck *)deck{
-    
-    self = [super init];
-    if(self){
-        for (int i=0; i<count; i++) {
-            Card *card = [deck drawRandomCard];
-            self.cards[i]=card;
-        }
-    }
-    return self;
-}
-
-
 -(void)flipCardAtIndex:(NSUInteger)index{
     
     Card *card;
@@ -90,10 +66,4 @@
     self.message = message;
     
 }
-
-
-
-
-
-
 @end

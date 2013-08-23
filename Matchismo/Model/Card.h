@@ -11,7 +11,8 @@
 @interface Card : NSObject
 
 -(NSString *)contents;
+-(NSAttributedString *)attributedContents;
 @property (nonatomic, getter = isFaceUp) BOOL faceUp;
 @property (nonatomic, getter = isUnplayable) BOOL unplayable;
-
+@property (nonatomic, getter = isSelected) BOOL selected;
 @end

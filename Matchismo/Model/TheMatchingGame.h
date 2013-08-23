@@ -7,14 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Deck.h"
-@interface TheMatchingGame : NSObject
+#import "TheGame.h"
+@interface TheMatchingGame : TheGame
 
-
--(id)initWithCardCount: (NSUInteger) count usingDeck:(Deck *)deck;
--(Card* )cardAtIndex: (NSUInteger) index;
--(void) flipCardAtIndex:(NSUInteger) index;
-@property (nonatomic) NSUInteger mode;
-@property (readonly,nonatomic) NSInteger score;
-@property (strong, nonatomic) NSString *message;
+-(void) flipCardAtIndex:(NSUInteger) index;//only one method to implement
+@property (nonatomic) NSUInteger mode;//2-card or 3-card matching modes
 @end

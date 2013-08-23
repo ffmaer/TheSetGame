@@ -18,11 +18,10 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *mode;
 @property (strong, nonatomic)NSMutableArray *history;
 @property (weak, nonatomic) IBOutlet UISlider *historySlider;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;//a collection of buttons
 @property (strong,nonatomic) TheMatchingGame *game;
 @property (strong,nonatomic) Deck* deck;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
-
 @end
 
 @implementation ViewController

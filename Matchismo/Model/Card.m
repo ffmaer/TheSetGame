@@ -14,5 +14,8 @@
 -(NSString *)contents{
     return @"hi";
 }
+-(NSAttributedString *)attributedContents{
+    return [[NSAttributedString alloc] initWithString:@"hi!"];
+}
 
 @end
